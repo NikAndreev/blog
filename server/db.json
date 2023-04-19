@@ -1,0 +1,73 @@
+{
+  "posts": [
+    {
+      "title": "Пост 1",
+      "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor impedit culpa officia pariatur dolorum quod tenetur neque quia molestiae explicabo. Officiis itaque numquam mollitia. Fugiat et dolore numquam inventore rem nam perferendis expedita obcaecati, at eum sed reiciendis impedit quia? Perferendis, quaerat alias. Pariatur, quibusdam magni fugiat rerum similique explicabo sed maxime excepturi voluptates sapiente consectetur dolorem iure culpa, reprehenderit debitis. Cumque nemo minus laborum alias! Unde, explicabo. Saepe consectetur, eaque tempore quam illo ullam fugit laboriosam vel delectus, facilis, natus minima pariatur harum accusamus distinctio aspernatur iusto sapiente numquam libero facere architecto possimus laudantium velit? Dolor quasi incidunt corporis.",
+      "createdAt": "2023-04-17T23:48:53.250Z",
+      "id": 1
+    },
+    {
+      "title": "Пост 2",
+      "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor impedit culpa officia pariatur dolorum quod tenetur neque quia molestiae explicabo. Officiis itaque numquam mollitia. Fugiat et dolore numquam inventore rem nam perferendis expedita obcaecati, at eum sed reiciendis impedit quia? Perferendis, quaerat alias. Pariatur, quibusdam magni fugiat rerum similique explicabo sed maxime excepturi voluptates sapiente consectetur dolorem iure culpa, reprehenderit debitis. Cumque nemo minus laborum alias! Unde, explicabo. Saepe consectetur, eaque tempore quam illo ullam fugit laboriosam vel delectus, facilis, natus minima pariatur harum accusamus distinctio aspernatur iusto sapiente numquam libero facere architecto possimus laudantium velit? Dolor quasi incidunt corporis.",
+      "createdAt": "2023-04-17T23:50:00.023Z",
+      "id": 2
+    },
+    {
+      "title": "Пост 3",
+      "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor impedit culpa officia pariatur dolorum quod tenetur neque quia molestiae explicabo. Officiis itaque numquam mollitia. Fugiat et dolore numquam inventore rem nam perferendis expedita obcaecati, at eum sed reiciendis impedit quia? Perferendis, quaerat alias. Pariatur, quibusdam magni fugiat rerum similique explicabo sed maxime excepturi voluptates sapiente consectetur dolorem iure culpa, reprehenderit debitis. Cumque nemo minus laborum alias! Unde, explicabo. Saepe consectetur, eaque tempore quam illo ullam fugit laboriosam vel delectus, facilis, natus minima pariatur harum accusamus distinctio aspernatur iusto sapiente numquam libero facere architecto possimus laudantium velit? Dolor quasi incidunt corporis.",
+      "createdAt": "2023-04-17T23:50:21.332Z",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "post_id": 1,
+      "parent_id": null,
+      "text": "Хороший пост!",
+      "name": "Никита",
+      "id": 1
+    },
+    {
+      "post_id": 1,
+      "parent_id": null,
+      "name": "Вася",
+      "text": "А мне не очень...",
+      "id": 2
+    },
+    {
+      "post_id": 1,
+      "parent_id": null,
+      "name": "Коля",
+      "text": "Норм",
+      "id": 3
+    },
+    {
+      "post_id": 1,
+      "parent_id": null,
+      "name": "Дима",
+      "text": "Интересно",
+      "id": 4
+    },
+    {
+      "post_id": 1,
+      "parent_id": 4,
+      "name": "Андрей",
+      "text": "Согласен!",
+      "id": 5
+    },
+    {
+      "post_id": 1,
+      "parent_id": 5,
+      "name": "Катя",
+      "text": "А я не очень...",
+      "id": 6
+    },
+    {
+      "post_id": 1,
+      "parent_id": 6,
+      "name": "Оля",
+      "text": "+",
+      "id": 7
+    }
+  ]
+}
