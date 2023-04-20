@@ -4,12 +4,12 @@
     class="ml-auto mr-auto"
     :loading="isPending"
   >
-    <template v-slot:title>
-      <div class="text-h4 mb-2">
+    <v-card-title>
+      <div class="text-h4">
         Посты
       </div>
-    </template>
-    <template v-slot:text>
+    </v-card-title>
+    <v-card-text>
       <v-list 
         v-if="posts.length"
         lines="two"
@@ -22,13 +22,13 @@
           <v-list-item-title>
             <router-link 
               :to="`/${post.id}`"
-              class="text-primary d-b text-h6 mb-1"
+              class="text-primary d-block text-h6 mb-1"
             >
               {{ post.title }}
             </router-link>
           </v-list-item-title>
           <v-list-item-subtitle>
-            <div class="d-b mb-1">
+            <div class="mb-1">
               {{ new Date(post.createdAt).toLocaleString('ru', {
                 day: 'numeric',
                 month: 'numeric',
@@ -45,7 +45,7 @@
       >
         Постов пока нет
       </div>
-    </template>
+    </v-card-text>
   </v-card>
 </template>
 

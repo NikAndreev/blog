@@ -1,13 +1,14 @@
 <template>
   <v-app-bar
+    app
     color="primary"
-    prominent
+    title="Админка"
   >
-    <v-toolbar-title>Админка</v-toolbar-title>
-    <v-app-bar-nav-icon variant="text" @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
   </v-app-bar>
 
   <v-navigation-drawer
+    app
     v-model="drawer"
     location="right"
     temporary
@@ -30,7 +31,7 @@
     </v-list>
   </v-navigation-drawer>
 
-  <v-main style="min-height: 100vh;">
+  <v-main>
     <v-container>
       <router-view />
     </v-container>

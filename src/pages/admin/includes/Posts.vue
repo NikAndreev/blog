@@ -4,12 +4,12 @@
     class="ml-auto mr-auto"
     :loading="isPending"
   >
-    <template v-slot:title>
-      <div class="text-h4 mb-2">
+    <v-card-title>
+      <div class="text-h4">
         Посты
       </div>
-    </template>
-    <template v-slot:text>
+    </v-card-title>
+    <v-card-text>
       <v-table v-if="posts.length">
         <thead>
           <tr>
@@ -91,7 +91,7 @@
         </router-link>
         .
       </div>
-    </template>
+    </v-card-text>
   </v-card>
 </template>
 

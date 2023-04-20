@@ -4,12 +4,12 @@
     class="ml-auto mr-auto"
     :loading="isPending"
   >
-    <template v-slot:title>
-      <div class="text-h4 mb-2">
+    <v-card-title class="mb-2">
+      <div class="text-h4">
         {{ title }}
       </div>
-    </template>
-    <template v-slot:text>
+    </v-card-title>
+    <v-card-text>
       <v-form 
         :disabled="isPending"
         @submit.prevent="onSubmit"
@@ -39,7 +39,7 @@
           Сохранить
         </v-btn>
       </v-form>
-    </template>
+    </v-card-text>
   </v-card> 
 </template>
 

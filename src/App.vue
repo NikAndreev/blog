@@ -1,9 +1,7 @@
 <template>
-  <v-card>
-    <v-layout>
-      <router-view />
-    </v-layout>
-  </v-card>
+  <v-app>
+    <router-view />
+  </v-app>
 </template>
 
 <script>

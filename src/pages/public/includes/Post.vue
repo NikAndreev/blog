@@ -3,27 +3,34 @@
     max-width="800"
     class="ml-auto mr-auto mb-6"
     :loading="isPending"
-    :text="post.content"
-    :subtitle="postDate"
   >
-    <template v-slot:title>
-      <div class="text-h4 mb-2">
+    <v-card-title>
+      <div class="text-h4">
         {{ post.title }}
       </div>
-    </template>
+    </v-card-title>
+    <v-card-subtitle>
+      {{ postDate }}
+    </v-card-subtitle>
+    <v-card-text>
+      {{ post.content }}
+    </v-card-text>
   </v-card>
+
   <v-card
     max-width="800"
     class="ml-auto mr-auto"
     :loading="isСommentsPending"
-    :subtitle="commentsCount"
   >
-    <template v-slot:title>
-      <div class="text-h5 mb-2">
+    <v-card-title>
+      <div class="text-h5">
         Комментарии
       </div>
-    </template>
-    <template v-slot:text>
+    </v-card-title>
+    <v-card-subtitle>
+      {{ commentsCount }}
+    </v-card-subtitle>
+    <v-card-text>
       <CommentForm 
         :post-id="post.id || NaN"
         :is-disabled="isPending"
@@ -46,7 +53,7 @@
       >
         Комментариев пока нет
       </div>
-    </template>
+    </v-card-text>
   </v-card>
 </template>
 

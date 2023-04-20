@@ -1,21 +1,22 @@
 <template>
   <v-banner
     color="primary"
-    density="compact"
   >
     <v-banner-text>
-      <div class="text-h6" style="white-space: nowrap;">
-        {{ comment.name }}
+      <div class="mb-1">
+        <span class="text-h6">
+          {{ comment.name }}
+        </span>
         <span 
           v-if="comment.parent_id"
           class="text-body-2"
         >
-          в ответ на 
+          в&nbsp;ответ&nbsp;на
           <span 
             class="text-primary text-decoration-underline"
             style="cursor: pointer;"
           >
-            коммент #{{ comment.parent_id }}
+            коммент&nbsp;#&nbsp;{{ comment.parent_id }}
           </span>
         </span>
       </div>
@@ -39,13 +40,13 @@
         class="mt-4"
       />
     </v-banner-text>
-    <template v-slot:actions>
+    <v-banner-actions>
       <v-btn 
         @click="isOpen = !isOpen"
       >
         Ответить
       </v-btn>
-    </template>
+    </v-banner-actions>
   </v-banner>
 </template>
 
