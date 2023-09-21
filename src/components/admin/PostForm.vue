@@ -1,100 +1,97 @@
 <template>
-  <v-card
-    max-width="800"
-    class="ml-auto mr-auto"
-    :loading="isPending"
-  >
+  <v-card max-width="800" class="ml-auto mr-auto" :loading="isPending">
     <v-card-title class="mb-2">
       <div class="text-h4">
         {{ title }}
       </div>
     </v-card-title>
     <v-card-text>
-      <v-form 
+      <v-form
         :disabled="isPending"
         @submit.prevent="onSubmit"
-        :novalidate="false"
-      >
+        :novalidate="false">
         <v-text-field
           v-model.trim="post.title"
           label="Заголовок"
           hide-details
           class="mb-4"
-          required
-        >
+          required>
         </v-text-field>
-        <v-textarea 
+        <v-textarea
           v-model.trim="post.content"
           label="Контент"
           hide-details
           class="mb-4"
-          required
-        >
+          required>
         </v-textarea>
-        <v-btn
-          color="primary"
-          type="submit"
-          :disabled="isPending"
-        >
+        <v-btn color="primary" type="submit" :disabled="isPending">
           Сохранить
         </v-btn>
       </v-form>
     </v-card-text>
-  </v-card> 
+  </v-card>
 </template>
 
-<script>
-import { ref } from 'vue'
-import store from "@src/store"
-import { useRouter, useRoute } from 'vue-router'
+<script lang="ts">
+import { defineComponent } from "vue";
+import { ref } from "vue";
+import store from "@src/store";
+import { useRouter, useRoute } from "vue-router";
+import PostModel from "@src/models/PostModel";
 
-export default {
+export default defineComponent({
+  name: "PostForm",
   setup() {
-    const isPending = ref(true)
-    const post = ref({})
-    const title = ref('')
-    const route = useRoute()
-    const router = useRouter()
+    const isPending = ref(true);
+    const post = ref(<PostModel>{});
+    const title = ref("");
+    const route = useRoute();
+    const router = useRouter();
 
     const onSubmit = () => {
-      isPending.value = true
+      isPending.value = true;
 
-      if (route.name === 'addPost') {
-        post.value.createdAt = new Date()
+      if (route.name === "addPost") {
+        post.value.createdAt = String(new Date());
       }
 
-      store.dispatch(route.name === 'addPost' ? 'admin/createPost' : 'admin/updatePost', post.value)
+      store
+        .dispatch(
+          route.name === "addPost" ? "admin/createPost" : "admin/updatePost",
+          post.value
+        )
         .then(() => {
           router.push({
-            path: '/admin'
-          })
-        })
-        .finally(()=> {
-          isPending.value = false
-        })
-    }
-
-    if (route.name === 'editPost' && route.params.id) {
-      title.value = `Пост ${route.params.id}`
-
-      store.dispatch('admin/getPost', route.params.id)
-        .then(res => {
-          post.value = res.data
+            path: "/admin",
+          });
         })
         .finally(() => {
-          isPending.value = false
+          isPending.value = false;
+        });
+    };
+
+    if (route.name === "editPost" && route.params.id) {
+      title.value = `Пост ${route.params.id}`;
+
+      store
+        .dispatch("admin/getPost", route.params.id)
+        .then((res) => {
+          post.value = res.data;
         })
+        .finally(() => {
+          isPending.value = false;
+        });
     } else {
-      title.value = 'Добавить пост'
-      isPending.value = false
+      title.value = "Добавить пост";
+      isPending.value = false;
     }
 
     return {
       isPending,
       post,
       title,
-      onSubmit
-    }
-  } 
-}
+      onSubmit,
+    };
+  },
+});
 </script>

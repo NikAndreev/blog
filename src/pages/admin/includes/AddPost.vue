@@ -2,12 +2,13 @@
   <PostForm />
 </template>
 
-<script>
-import PostForm from '@src/components/admin/PostForm.vue'
+<script lang="ts">
+import { defineComponent } from "vue";
+import PostForm from "@src/components/admin/PostForm.vue";
 
-export default {
+export default defineComponent({
   components: {
-    PostForm
-  }
-}
+    PostForm,
+  },
+});
 </script>

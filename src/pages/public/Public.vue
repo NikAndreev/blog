@@ -1,29 +1,13 @@
 <template>
-  <v-app-bar
-    app
-    color="primary"
-    title="Блог"
-  >
+  <v-app-bar app color="primary" title="Блог">
     <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
   </v-app-bar>
 
-  <v-navigation-drawer
-    app
-    v-model="drawer"
-    location="right"
-    temporary
-  >
+  <v-navigation-drawer app v-model="drawer" location="right" temporary>
     <v-list>
-      <v-list-item
-        v-for="item in nav"
-        :key="item.url"
-        :value="item.url"
-      >
+      <v-list-item v-for="item in nav" :key="item.url" :value="item.url">
         <v-list-item-title>
-          <router-link 
-            :to="item.url"
-            class="text-primary"
-          >
+          <router-link :to="item.url" class="text-primary">
             {{ item.title }}
           </router-link>
         </v-list-item-title>
@@ -38,23 +22,24 @@
   </v-main>
 </template>
 
-<script>
-import { ref } from 'vue'
+<script lang="ts">
+import { defineComponent } from "vue";
+import { ref } from "vue";
 
-export default {
+export default defineComponent({
   setup() {
-    const drawer = ref(false)
+    const drawer = ref(false);
     const nav = [
       {
-        title: 'Посты',
-        url: '/'
-      }
-    ]
+        title: "Посты",
+        url: "/",
+      },
+    ];
 
     return {
       drawer,
-      nav
-    }
-  }
-}
+      nav,
+    };
+  },
+});
 </script>

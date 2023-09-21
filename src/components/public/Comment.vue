@@ -1,21 +1,15 @@
 <template>
-  <v-banner
-    color="primary"
-  >
+  <v-banner color="primary">
     <v-banner-text>
       <div class="mb-1">
         <span class="text-h6">
           {{ comment.name }}
         </span>
-        <span 
-          v-if="comment.parent_id"
-          class="text-body-2"
-        >
+        <span v-if="comment.parent_id" class="text-body-2">
           в&nbsp;ответ&nbsp;на
-          <span 
+          <span
             class="text-primary text-decoration-underline"
-            style="cursor: pointer;"
-          >
+            style="cursor: pointer">
             коммент&nbsp;#&nbsp;{{ comment.parent_id }}
           </span>
         </span>
@@ -25,58 +19,54 @@
       </div>
       <template v-if="comment.comments?.length">
         <Comment
-          v-for="comment in comment.comments"
-          :key="comment.id"
-          :comment="comment"
-          @comment-created="onCommentCreated"
-        >
+          v-for="subComment in comment.comments"
+          :key="subComment.id"
+          :comment="subComment"
+          @comment-created="onCommentCreated">
         </Comment>
       </template>
-      <CommentForm 
+      <CommentForm
         v-show="isOpen"
         :post-id="comment.post_id"
         :parent-id="comment.id"
         @comment-created="onCommentCreated"
-        class="mt-4"
-      />
+        class="mt-4" />
     </v-banner-text>
     <v-banner-actions>
-      <v-btn 
-        @click="isOpen = !isOpen"
-      >
-        Ответить
-      </v-btn>
+      <v-btn @click="isOpen = !isOpen"> Ответить </v-btn>
     </v-banner-actions>
   </v-banner>
 </template>
 
-<script>
-import { ref } from 'vue'
-import CommentForm from '@src/components/public/CommentForm.vue'
+<script lang="ts">
+import { defineComponent } from "vue";
+import { ref } from "vue";
+import CommentForm from "@src/components/public/CommentForm.vue";
 
-export default {
+export default defineComponent({
+  name: "Comment",
   components: {
     CommentForm,
   },
-  emits: ['commentCreated'],
+  emits: ["commentCreated"],
   props: {
     comment: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  setup(props, {emit}) {
-    const isOpen = ref(false)
+  setup(props, { emit }) {
+    const isOpen = ref(false);
 
     const onCommentCreated = () => {
-      emit('commentCreated')
-      isOpen.value = false
-    }
+      emit("commentCreated");
+      isOpen.value = false;
+    };
 
     return {
       isOpen,
-      onCommentCreated
-    }
-  }
-}
+      onCommentCreated,
+    };
+  },
+});
 </script>

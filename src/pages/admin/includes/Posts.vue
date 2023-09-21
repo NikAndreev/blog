@@ -1,37 +1,20 @@
 <template>
-  <v-card
-    max-width="800"
-    class="ml-auto mr-auto"
-    :loading="isPending"
-  >
+  <v-card max-width="800" class="ml-auto mr-auto" :loading="isPending">
     <v-card-title>
-      <div class="text-h4">
-        Посты
-      </div>
+      <div class="text-h4">Посты</div>
     </v-card-title>
     <v-card-text>
       <v-table v-if="posts.length">
         <thead>
           <tr>
-            <th>
-              #
-            </th>
-            <th>
-              ЗАГОЛОВОК
-            </th>
-            <th>
-              ДАТА СОЗДАНИЯ
-            </th>
-            <th>
-              ДЕЙСТВИЯ
-            </th>
+            <th>#</th>
+            <th>ЗАГОЛОВОК</th>
+            <th>ДАТА СОЗДАНИЯ</th>
+            <th>ДЕЙСТВИЯ</th>
           </tr>
         </thead>
         <tbody>
-          <tr
-            v-for="post in posts"
-            :key="post.id"
-          >
+          <tr v-for="post in posts" :key="post.id">
             <td>
               {{ post.id }}
             </td>
@@ -44,31 +27,25 @@
             <td>
               <v-menu>
                 <template v-slot:activator="{ props }">
-                  <v-btn
-                    color="primary"
-                    v-bind="props"
-                    :disabled="isPending"
-                  >
+                  <v-btn color="primary" v-bind="props" :disabled="isPending">
                     Действия
                   </v-btn>
                 </template>
                 <v-list density="compact">
                   <v-list-item value="edit">
                     <v-list-item-title>
-                      <router-link 
+                      <router-link
                         :to="`/admin/edit/${post.id}`"
-                        class="text-primary"
-                      >
+                        class="text-primary">
                         Посмотреть
                       </router-link>
                     </v-list-item-title>
                   </v-list-item>
                   <v-list-item value="delete">
-                    <v-list-item-title 
-                      class="text-red text-decoration-underline" 
-                      style="cursor: pointer;"
-                      @click="onDelete(post.id)"
-                    >
+                    <v-list-item-title
+                      class="text-red text-decoration-underline"
+                      style="cursor: pointer"
+                      @click="onDelete(post.id)">
                       Удалить
                     </v-list-item-title>
                   </v-list-item>
@@ -78,15 +55,9 @@
           </tr>
         </tbody>
       </v-table>
-      <div 
-        v-else
-        class="text-h5"
-      >
-        Постов пока нет. 
-        <router-link 
-          to="/admin/add"
-          class="text-primary"
-        >
+      <div v-else class="text-h5">
+        Постов пока нет.
+        <router-link to="/admin/add" class="text-primary">
           Создать пост
         </router-link>
         .
@@ -95,43 +66,47 @@
   </v-card>
 </template>
 
-<script>
-import { ref } from 'vue'
-import store from "@src/store"
+<script lang="ts">
+import { defineComponent } from "vue";
+import { ref } from "vue";
+import store from "@src/store";
+import { AxiosResponse } from "axios";
+import PostModel from "@src/models/PostModel";
 
-export default {
+export default defineComponent({
   setup() {
-    const isPending = ref(true)
-    const posts = ref([])
+    const isPending = ref(true);
+    const posts = ref(<PostModel[]>[]);
 
-    const onDelete = id => {
-      if (confirm('Вы уверены, что хотите удалить?')) {
-        isPending.value = true
+    const onDelete = (id: number) => {
+      if (confirm("Вы уверены, что хотите удалить?")) {
+        isPending.value = true;
 
-        store.dispatch('admin/deletePost', id)
+        store
+          .dispatch("admin/deletePost", id)
           .then(() => getPosts())
-          .catch(() => isPending.value = false)
+          .catch(() => (isPending.value = false));
       }
-    }
+    };
 
     const getPosts = () => {
-      store.dispatch('admin/getPosts')
-        .then(res => {
-          posts.value = res.data
+      store
+        .dispatch("admin/getPosts")
+        .then((res: AxiosResponse) => {
+          posts.value = res.data;
         })
         .finally(() => {
-          isPending.value = false
-        })
-    } 
+          isPending.value = false;
+        });
+    };
 
-    getPosts()
+    getPosts();
 
     return {
       isPending,
       posts,
-      onDelete
-    }
-  } 
-}
+      onDelete,
+    };
+  },
+});
 </script>
- 
